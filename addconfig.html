@@ -6,12 +6,13 @@
 
 <meta charset="utf-8">
 
-<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
--->
+<!--
 <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
 
@@ -19,24 +20,38 @@ $(document).ready(function(){
 
 $('#serverTS').click(function(){
 
+//alert(window.location.hostname);
+
 $.ajax({
 
-url: ':9000/getServerTS',
+url: 'http://'+window.location.hostname+':9000/getServerTS',
 success: function(data){
 
-	
+//	alert(data);
+	data2=data.split('\n');
+	var popup;
+	popup = '<div><input ';
+//	popup += 'type="checkbox">0.0.0.0/0<br /><input '
 
-},
+	for (var i=0; i<data2.length-1; i++) {
+		popup += 'type="checkbox">'+data2[i]+'<br /><input ';
+	};
 
+	popup += 'type="checkbox">'+data2[i+1]+'</div>';
+	popup2 = $(popup);
+	$(popup2).dialog();
+
+//alert(popup);
+	},
 });
 
+/*
 var leftsubnet='0.0.0.0/0';
 var popup = $('<div><input ' +
 		'type="checkbox">'+leftsubnet+'<br /><input ' +
 		'type="checkbox">'+leftsubnet+'</div>');
+*/
 
-
-	popup.dialog();
 
 });
 
