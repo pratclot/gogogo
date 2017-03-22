@@ -6,11 +6,42 @@
 
 <meta charset="utf-8">
 
+<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+-->
+<link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
+<script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+var leftsubnet='0.0.0.0/0';
+var popup = $('<div><input ' +
+		'type="checkbox">'+leftsubnet+'<br /><input ' +
+		'type="checkbox">'+leftsubnet+'</div>');
+
+$('#serverTS').click(function(){
+
+	popup.dialog();
+
+});
+
+});
+
+</script>
+
 </head>
 
-<body>
+<body> 
 
-<p>Provide password</p>
+<div style="text-align:center;margin:auto;">
+
+<p id='serverTS'>Server TS</p>
+<p id='clientTS'>Client TS</p>
+
+</div>
 
 </body>
 
