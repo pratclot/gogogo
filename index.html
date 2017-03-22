@@ -15,6 +15,16 @@ $('#restart').click(function(){
 }
 )
 
+
+$('#add').click(function(){
+
+//addconfig contains a markup with divs and inputs to let user fill in VPN connection details
+
+$("#interaction").html(addconfig);
+
+}
+)
+
 $('#stop').click(function(){
 
 alert("You got it!");
@@ -68,7 +78,7 @@ success: function(data){
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
-<li><a href=""></a></li>
+<li><a id="add">Add a config...</a></li>
 <li><a id="SA">Show SA's</a></li>
 <li><p id="stop">Stop charon</p></li>
 
