@@ -17,12 +17,24 @@
 
 $(document).ready(function(){
 
+$('#serverTS').click(function(){
+
+$.ajax({
+
+url: ':9000/getServerTS',
+success: function(data){
+
+	
+
+},
+
+});
+
 var leftsubnet='0.0.0.0/0';
 var popup = $('<div><input ' +
 		'type="checkbox">'+leftsubnet+'<br /><input ' +
 		'type="checkbox">'+leftsubnet+'</div>');
 
-$('#serverTS').click(function(){
 
 	popup.dialog();
 
