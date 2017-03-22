@@ -29,7 +29,7 @@ func pissHandler(w http.ResponseWriter, r *http.Request) {
 
 func getServerTSHandler(w http.ResponseWriter, r *http.Request) {
 
-		cmd := exec.Command("ip","a")
+		cmd := exec.Command("ip","r")
                 var out bytes.Buffer
                 cmd.Stdout = &out
                 err := cmd.Run()
