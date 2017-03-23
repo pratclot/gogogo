@@ -72,6 +72,7 @@ func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
 	var out = c.leftsubnet
 
 	fmt.Fprintln(rw,out)
+	fmt.Println(rw,out)
 
 }
 
