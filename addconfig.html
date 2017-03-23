@@ -14,7 +14,7 @@
 
 $(document).ready(function(){
 
-var checkedTS;
+var checkedTS = new Array();
 
 $('#serverTS').click(function(){
 
@@ -34,11 +34,10 @@ async: false
 	popup += 'type="checkbox" class="chkbx" value="'+data2[i]+'">'+data2[i]+'<button type="button"id="serverTSsubmit">Ok</button></div>';
 
 	$(popup).dialog();
-if (typeof checkedTS != 'undefined'){
+
 $.each(checkedTS,function(index,value){
 	$('.chkbx[value="'+value+'"]').prop('checked', true);
 });
-};
 
 $('#serverTSsubmit').click(function(){
 
@@ -47,21 +46,38 @@ $('#serverTSsubmit').click(function(){
 	}).get();
 	$('#popup').remove();
 	$(this).closest(".ui-dialog-content").dialog("close");
-	alert(checkedTS);
 	$('[name="serverTS"]').val(checkedTS);
 });
-
-$('#serverTSsubmit').click(function(){
-	});
 
 // from http://stackoverflow.com/questions/19766044/best-way-to-get-all-selected-checkboxes-values-in-jquery
 
 });
 
+(function ($) {
+    $.fn.serializeFormJSON = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+})(jQuery);
+
 $('#addConfigForm').submit(function(event){
 
-event.preventDefault();
-
+	event.preventDefault();
+	var data = $(this).serializeFormJSON():
+	var json = JSON.stringify(data);
+	console.log(json);
+	$.post("http://"+window.location.hostname+":9000/send", json);
 
 });
 

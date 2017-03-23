@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os/exec"
 	"github.com/rs/cors"
+	"encoding/json"
 )
 
 
@@ -50,11 +51,36 @@ func getServerTSHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, out.String())
 	}
 
+type configForm struct {
+
+	leftsubnet string `json:"serverTS"`
+
+/*
+        Name string `json:"nameForm"`
+        Email string `json:"emailForm"`
+        Phone string `json:"phoneForm"`
+        Check string `json:"checkForm"`
+        Message string `json:"messageForm"`
+*/
+}
+
+func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
+
+        c := &configForm{}
+        json.NewDecoder(req.Body).Decode(c)
+
+	var out = c.leftsubnet
+
+	fmt.Fprintln(rw,out)
+
+}
+
 func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/piss", pissHandler)
 	mux.HandleFunc("/getServerTS", getServerTSHandler)
+	mux.HandleFunc("/sendConfig", sendConfigHandler)
 
 	handler := cors.Default().Handler(mux)
 	log.Fatal(http.ListenAndServe(":9000", handler))
