@@ -12,34 +12,52 @@
 
 <script>
 
+var checkedTS;
+
 $(document).ready(function(){
+
 
 $('#serverTS').click(function(){
 
-$.ajax({
+//var data2 = new Array();
+
+var data2 = $.ajax({
 
 url: 'http://'+window.location.hostname+':9000/getServerTS',
+async: false
+/*
 success: function(data){
 
-	data2=data.split('\n');
-	var popup;
+	var data3=data.split('\n');
+
+},
+*/
+}).responseText.split('\n');
+
 	popup = '<div id="popup"><input ';
 
 	for (var i=0; i<data2.length-3; i++) {
 		popup += 'type="checkbox" class="chkbx" value="'+data2[i]+'">'+data2[i]+'<br /><input ';
 	};
 
-	popup += 'type="checkbox" class="chkbx" value="'+data2[i]+'">'+data2[i]+'</div>';
+	popup += 'type="checkbox" class="chkbx" value="'+data2[i]+'">'+data2[i]+'<button type="button"id="serverTSsubmit">Ok</button></div>';
+
 	$(popup).dialog();
 
-	var checkedTS = $('.chkbx:checked').map(function() {
+$('#serverTSsubmit').click(function(){
+	checkedTS = $('.chkbx:checked').map(function() {
 		return this.value;
 	}).get();
+	$(this).closest(".ui-dialog-content").dialog("close");
+});
+
+alert(checkedTS);
+
+$('#serverTSsubmit').click(function(){
+	});
 
 // from http://stackoverflow.com/questions/19766044/best-way-to-get-all-selected-checkboxes-values-in-jquery
-	
-	},
-});
+
 
 });
 
