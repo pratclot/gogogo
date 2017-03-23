@@ -12,26 +12,17 @@
 
 <script>
 
-var checkedTS;
-
 $(document).ready(function(){
 
+var checkedTS;
 
 $('#serverTS').click(function(){
-
-//var data2 = new Array();
 
 var data2 = $.ajax({
 
 url: 'http://'+window.location.hostname+':9000/getServerTS',
 async: false
-/*
-success: function(data){
 
-	var data3=data.split('\n');
-
-},
-*/
 }).responseText.split('\n');
 
 	popup = '<div id="popup"><input ';
@@ -48,6 +39,7 @@ $('#serverTSsubmit').click(function(){
 	checkedTS = $('.chkbx:checked').map(function() {
 		return this.value;
 	}).get();
+	$('#popup').remove();
 	$(this).closest(".ui-dialog-content").dialog("close");
 });
 
