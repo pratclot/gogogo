@@ -34,21 +34,33 @@ async: false
 	popup += 'type="checkbox" class="chkbx" value="'+data2[i]+'">'+data2[i]+'<button type="button"id="serverTSsubmit">Ok</button></div>';
 
 	$(popup).dialog();
+if (typeof checkedTS != 'undefined'){
+$.each(checkedTS,function(index,value){
+	$('.chkbx[value="'+value+'"]').prop('checked', true);
+});
+};
 
 $('#serverTSsubmit').click(function(){
+
 	checkedTS = $('.chkbx:checked').map(function() {
 		return this.value;
 	}).get();
 	$('#popup').remove();
 	$(this).closest(".ui-dialog-content").dialog("close");
+	alert(checkedTS);
+	$('[name="serverTS"]').val(checkedTS);
 });
-
-alert(checkedTS);
 
 $('#serverTSsubmit').click(function(){
 	});
 
 // from http://stackoverflow.com/questions/19766044/best-way-to-get-all-selected-checkboxes-values-in-jquery
+
+});
+
+$('#addConfigForm').submit(function(event){
+
+event.preventDefault();
 
 
 });
@@ -63,8 +75,11 @@ $('#serverTSsubmit').click(function(){
 
 <div style="text-align:center;margin:auto;">
 
-<p id='serverTS'>Server TS</p>
-<p id='clientTS'>Client TS</p>
+<form id="addConfigForm">
+	<p id='serverTS'>Server TS<input type="text" name="serverTS"></p>
+	<p id='clientTS'>Client TS<input type="text" name="clientTS"></p>
+	<input type="submit">
+</form>
 
 </div>
 
