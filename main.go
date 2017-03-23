@@ -54,6 +54,7 @@ func getServerTSHandler(w http.ResponseWriter, r *http.Request) {
 type configForm struct {
 
 	leftsubnet string `json:"serverTS"`
+	rightsubnet string `json:"clientTS"`
 
 /*
         Name string `json:"nameForm"`
@@ -67,12 +68,21 @@ type configForm struct {
 func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
 
         c := &configForm{}
-        json.NewDecoder(req.Body).Decode(c)
+	p := json.NewDecoder(req.Body)
 
-	var out = c.leftsubnet
+	err := p.Decode(c)
 
-	fmt.Fprintln(rw,out)
-	fmt.Println(rw,out)
+	if err != nil {
+		panic(err)
+	}
+
+//	var out = c.leftsubnet
+
+	log.Println(c.leftsubnet)
+
+//	fmt.Fprintln(rw,out)
+//	fmt.Println(rw,out)
+//	fmt.Println(rw,req.Body)
 
 }
 
