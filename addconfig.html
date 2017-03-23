@@ -1,3 +1,4 @@
+<!--
 <!doctype html>
 
 <html lang="en">
@@ -5,14 +6,50 @@
 <head>
 
 <meta charset="utf-8">
-
+-->
+<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+-->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<!--
+<script type="text/javascript">
+
+jQuery.noConflict();
+	(function($) {
+    		$.fn.FserializeFormJSON = function () {
+       			var o = {};
+       			var a = this.serializeArray();
+       			$.each(a, function () {
+           			if (o[this.name]) {
+               				if (!o[this.name].push) {
+                   				o[this.name] = [o[this.name]];
+               				};
+             				o[this.name].push(this.value || '');
+          			} else {
+              				o[this.name] = this.value || '';
+           			};
+       			});
+       			return o;
+    		};
+	})(jQuery);
+/*
+	(function($){
+		$.fn.fag = function (){
+			alert('fuckin faggot!');
+		};
+			alert('fuckin faggot!');
+	})(jQuery);
+*/
+
+</script>
+-->
 
 <script>
 
 $(document).ready(function(){
+
 
 	var checkedTS = new Array();
 
@@ -51,9 +88,10 @@ $(document).ready(function(){
 
 // from http://stackoverflow.com/questions/19766044/best-way-to-get-all-selected-checkboxes-values-in-jquery
 
+	});
 
-	(function ($) {
-    		$.fn.serializeFormJSON = function () {
+	(function($) {
+    		$.fn.FserializeFormJSON = function () {
        			var o = {};
        			var a = this.serializeArray();
        			$.each(a, function () {
@@ -73,20 +111,28 @@ $(document).ready(function(){
 	$('#addConfigForm').submit(function(event){
 
 		event.preventDefault();
-		var data = $(this).serializeFormJSON():
+		var data = $(this).FserializeFormJSON();
 		var json = JSON.stringify(data);
 		console.log(json);
 		$.post("http://"+window.location.hostname+":9000/send", json);
 
 	});
+/*
+	$('#clientTS').click(function(){
 
+		$.fag();
+
+	});
+*/
 });
 
 </script>
 
+<!--
 </head>
 
 <body> 
+-->
 
 <div style="text-align:center;margin:auto;">
 
@@ -97,8 +143,8 @@ $(document).ready(function(){
 </form>
 
 </div>
-
+<!--
 </body>
 
 </html>
-
+-->
