@@ -5,11 +5,19 @@ import (
 	"bytes"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 	"github.com/rs/cors"
-	"encoding/json"
+//	"encoding/json"
 )
 
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+//universal error checker from https://gobyexample.com/writing-files
 
 func pissHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -66,23 +74,22 @@ type configForm struct {
 }
 
 func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
-
+/*
         c := &configForm{}
 	p := json.NewDecoder(req.Body)
 
 	err := p.Decode(c)
 
-	if err != nil {
-		panic(err)
-	}
+	check(err)
 
 //	var out = c.leftsubnet
 
+	log.SetOutput(os.Stderr)
 	log.Println(c.leftsubnet)
-
+*/
 //	fmt.Fprintln(rw,out)
 //	fmt.Println(rw,out)
-//	fmt.Println(rw,req.Body)
+	fmt.Println(rw,req.Body)
 
 }
 
@@ -93,6 +100,7 @@ func main() {
 	mux.HandleFunc("/getServerTS", getServerTSHandler)
 	mux.HandleFunc("/sendConfig", sendConfigHandler)
 
+	log.SetOutput(os.Stderr)
 	handler := cors.Default().Handler(mux)
 	log.Fatal(http.ListenAndServe(":9000", handler))
 

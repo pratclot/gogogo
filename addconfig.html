@@ -114,7 +114,13 @@ $(document).ready(function(){
 		var data = $(this).FserializeFormJSON();
 		var json = JSON.stringify(data);
 		console.log(json);
-		$.post("http://"+window.location.hostname+":9000/sendConfig", json);
+		$.post("http://"+window.location.hostname+":9000/sendConfig", json, function(data){
+
+				$('#output').text(data);
+
+			}
+
+		);
 
 	});
 /*
