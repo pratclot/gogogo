@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"github.com/rs/cors"
-//	"encoding/json"
+	"encoding/json"
 )
 
 func check(e error) {
@@ -61,35 +61,43 @@ func getServerTSHandler(w http.ResponseWriter, r *http.Request) {
 
 type configForm struct {
 
-	leftsubnet string `json:"serverTS"`
-	rightsubnet string `json:"clientTS"`
+//	serverTS string
+//	clientTS string
 
-/*
-        Name string `json:"nameForm"`
-        Email string `json:"emailForm"`
-        Phone string `json:"phoneForm"`
-        Check string `json:"checkForm"`
-        Message string `json:"messageForm"`
-*/
+
+	Leftsubnet string `json:"serverTS"`
+	Rightsubnet string `json:"clientTS"`
+
 }
 
 func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
 /*
         c := &configForm{}
-	p := json.NewDecoder(req.Body)
+	g := req.Body
+	err := json.NewDecoder(g).Decode(c)
 
-	err := p.Decode(c)
+//	err := p.Decode(c)
 
 	check(err)
-
+*/
 //	var out = c.leftsubnet
 
-	log.SetOutput(os.Stderr)
-	log.Println(c.leftsubnet)
-*/
+//	log.SetOutput(os.Stderr)
+//	log.Println(c.leftsubnet)
+
 //	fmt.Fprintln(rw,out)
 //	fmt.Println(rw,out)
-	fmt.Println(rw,req.Body)
+//	fmt.Println(rw,req)
+//	fmt.Fprintln(rw,c.leftsubnet)
+
+	decoder := json.NewDecoder(req.Body)
+
+	var t configForm
+	err := decoder.Decode(&t)
+
+	check(err)
+	
+	fmt.Println(t.Leftsubnet)
 
 }
 

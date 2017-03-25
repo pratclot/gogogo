@@ -34,14 +34,6 @@ jQuery.noConflict();
        			return o;
     		};
 	})(jQuery);
-/*
-	(function($){
-		$.fn.fag = function (){
-			alert('fuckin faggot!');
-		};
-			alert('fuckin faggot!');
-	})(jQuery);
-*/
 
 </script>
 -->
@@ -111,25 +103,19 @@ $(document).ready(function(){
 	$('#addConfigForm').submit(function(event){
 
 		event.preventDefault();
-		var data = $(this).FserializeFormJSON();
-		var json = JSON.stringify(data);
+		var data2 = $(this).FserializeFormJSON();
+		var json = JSON.stringify(data2);
 		console.log(json);
 		$.post("http://"+window.location.hostname+":9000/sendConfig", json, function(data){
 
-				$('#output').text(data);
+				$('#output').html(data);
 
 			}
 
 		);
 
 	});
-/*
-	$('#clientTS').click(function(){
 
-		$.fag();
-
-	});
-*/
 });
 
 </script>
