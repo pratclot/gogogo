@@ -71,15 +71,6 @@ type configForm struct {
 }
 
 func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
-/*
-        c := &configForm{}
-	g := req.Body
-	err := json.NewDecoder(g).Decode(c)
-
-//	err := p.Decode(c)
-
-	check(err)
-*/
 //	var out = c.leftsubnet
 
 //	log.SetOutput(os.Stderr)
