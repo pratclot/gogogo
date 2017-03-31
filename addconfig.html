@@ -13,35 +13,9 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<!--
-<script type="text/javascript">
-
-jQuery.noConflict();
-	(function($) {
-    		$.fn.FserializeFormJSON = function () {
-       			var o = {};
-       			var a = this.serializeArray();
-       			$.each(a, function () {
-           			if (o[this.name]) {
-               				if (!o[this.name].push) {
-                   				o[this.name] = [o[this.name]];
-               				};
-             				o[this.name].push(this.value || '');
-          			} else {
-              				o[this.name] = this.value || '';
-           			};
-       			});
-       			return o;
-    		};
-	})(jQuery);
-
-</script>
--->
-
 <script>
 
 $(document).ready(function(){
-
 
 	var checkedTS = new Array();
 
@@ -81,6 +55,8 @@ $(document).ready(function(){
 // from http://stackoverflow.com/questions/19766044/best-way-to-get-all-selected-checkboxes-values-in-jquery
 
 	});
+
+// these two convert the form data to json and post the results to the server
 
 	(function($) {
     		$.fn.FserializeFormJSON = function () {
@@ -129,8 +105,10 @@ $(document).ready(function(){
 <div style="text-align:center;margin:auto;">
 
 <form id="addConfigForm">
-	<p id='serverTS'>Server TS<input type="text" name="serverTS"></p>
-	<p id='clientTS'>Client TS<input type="text" name="clientTS"></p>
+	<p id='serverTS'>Server TS<input type='text' name='serverTS'></p>
+	<p id='clientTS'>Client TS<input type='text' name='clientTS'></p>
+	<p id='ipPool'>Virtual IPv4 range<input type='text' name='ipPool'></p>
+	<p id='IKEpass'>IKE password<input type='password' name='IKEpass'></p>
 	<input type="submit">
 </form>
 

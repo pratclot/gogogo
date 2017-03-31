@@ -61,12 +61,10 @@ func getServerTSHandler(w http.ResponseWriter, r *http.Request) {
 
 type configForm struct {
 
-//	serverTS string
-//	clientTS string
-
-
-	Leftsubnet string `json:"serverTS"`
-	Rightsubnet string `json:"clientTS"`
+	LeftSubnet string `json:"serverTS"`
+	RightSubnet string `json:"clientTS"`
+	IKESecret string `json:"IKEpass"`
+	IpPool string `json:"ipPool"`
 
 }
 
@@ -88,7 +86,11 @@ func sendConfigHandler(rw http.ResponseWriter, req *http.Request) {
 
 	check(err)
 	
-	fmt.Println(t.Leftsubnet)
+//	fmt.Println(t.IKESecret+`, `+t.IpPool)
+
+//	now passing the config to sqlite
+
+	
 
 }
 
